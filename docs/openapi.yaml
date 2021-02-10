@@ -88,8 +88,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/entityresponse'
-        204:
-          description: 'Empty Response'
 
         400:
           content:
@@ -199,7 +197,7 @@ paths:
 
       - name: options
         in: query
-        description: 'The <b>options</b> parameter is used for obtaining the <b>number of hits</b> for a query. <br/> It should be used along with the <b> valid </b> `spatial`, `attribute` or `complex` queries. <br/> It <b>cannot</b> be used along with a <b>attrs</b> filter. The value should be equal to `count` and it is <b>case sensitive</b>'
+        description: 'The <b>options</b> parameter is used for obtaining the <b>number of hits</b> for a query. <br/>The value should be equal to `count` and it is <b>case sensitive</b>. <br/> It should be used along with the <b> valid </b> `spatial`, `attribute` or `complex` queries. <br/> It <b>cannot</b> be used along with a <b>attrs</b> filter.'
         schema:
           type: string
           enum: [count]
@@ -315,9 +313,9 @@ paths:
 
         #### Options
           - The <b>options</b> parameter is used for obtaining the <b>number of hits</b> for a query. 
+          - The value should be equal to `count` and it is <b>case sensitive</b>
           - It should be used along with the <b> valid </b> `spatial`, `attribute` or `complex` queries. 
           - It <b>cannot</b> be used along with a <b>attrs</b> filter. 
-          - The value should be equal to `count` and it is <b>case sensitive</b>
 
 
   /ngsi-ld/v1/temporal/entities:
@@ -417,7 +415,7 @@ paths:
 
       - name: options
         in: query
-        description: 'The <b>options</b> parameter is used for obtaining the <b>number of hits</b> for a spatial query. <br/> It should be used along with the <b> valid temporal query</b> or a <b> valid complex query</b>. <br/> It <b>cannot</b> be used along with a <b>attrs</b> filter. The value should be equal to `count` and it is <b>case sensitive</b>'
+        description: 'The <b>options</b> parameter is used for obtaining the <b>number of hits</b> for a spatial query. <br/> The value should be equal to `count` and it is <b>case sensitive</b>. <br/> It should be used along with the <b> valid temporal query</b> or a <b> valid complex query</b>. <br/> It <b>cannot</b> be used along with a <b>attrs</b> filter.'
         schema:
           type: string
           enum: [count]
@@ -544,9 +542,9 @@ paths:
 
         #### Options
           - The <b>options</b> parameter is used for obtaining the <b>number of hits</b> for a query. 
+          - The value should be equal to `count` and it is <b>case sensitive</b>
           - It should be used along with the <b> valid </b> `temporal`, or `complex` queries. 
           - It <b>cannot</b> be used along with a <b>attrs</b> filter. 
-          - The value should be equal to `count` and it is <b>case sensitive</b>
      
   /ngsi-ld/v1/entityOperations/query:
     post:
@@ -687,9 +685,9 @@ paths:
 
         #### Options
           - The <b>options</b> parameter is used for obtaining the <b>number of hits</b> for a query. 
+          - The value should be equal to `count` and it is <b>case sensitive</b>
           - It should be used along with the <b> valid </b> `temporal`, or `complex` queries. 
           - It <b>cannot</b> be used along with a <b>attrs</b> filter. 
-          - The value should be equal to `count` and it is <b>case sensitive</b>
 
       deprecated: false
 
@@ -1706,9 +1704,6 @@ components:
       required:
       - type
       - entities
-      - geoQ
-      - temporalQ
-      - attrs
       type: object
       properties:
         type:
@@ -1734,7 +1729,7 @@ components:
         options:
           type: string
           enum: [count]
-          description: 'The <b>options</b> parameter is used for obtaining the <b>number of hits</b> for a spatial query. <br/> It should be used along with the <b> valid temporal query</b> or a <b> valid complex query</b>. <br/> It <b>cannot</b> be used along with a <b>attrs</b> filter. The value should be equal to `count` and it is <b>case sensitive</b>'
+          description: 'The <b>options</b> parameter is used for obtaining the <b>number of hits</b> for a spatial query. <br/> The value should be equal to `count` and it is <b>case sensitive</b>. <br/> It should be used along with the <b> valid temporal query</b> or a <b> valid complex query</b>. <br/> It <b>cannot</b> be used along with a <b>attrs</b> filter.'
 
       example:
         type: Query
@@ -1970,8 +1965,8 @@ components:
           type: string
       example:
         type: 400
-        title: Bad Request Data
-        detail: Empty response | Missing/Invalid temporal parameters | Missing/Invalid geo parameters | Count is not supported with filtering
+        title: Bad Request
+        detail: Bad query
         
     standardInvalidTokenErrorResponse:
       title: standardInvalidTokenErrorResponse
@@ -2012,5 +2007,5 @@ components:
           type: string
       example:
         type: 400
-        title: Bad Request Data
-        detail: Missing/Invalid parameters
+        title: Bad Request
+        detail: Bad query
